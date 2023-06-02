@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons+Outlined");
 .App {
   text-align: center;
 }
@@ -17,4 +19,18 @@
 .App-link {
   color: #61dafb;
 }
-
+.cart-btn{
+  margin-left: auto;
+    position: relative;
+    max-width: max-content;
+    padding: 0.75rem;
+}
+.cart-num{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.btn{
+  border: 1px solid rgba(0, 0,0, 0.1);
+  border-radius: 50%;
+}

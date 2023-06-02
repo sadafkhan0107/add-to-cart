@@ -42,6 +42,13 @@ function App() {
 
 console.log(cart)
   return (
+    <div>
+    <div className='cart-btn'> 
+    <span class="material-icons-outlined">
+      shopping_cart
+     </span>
+    <span className='cart-num'> <button className='btn'>{cart?.length}</button> </span>
+    </div>
     <div className="App">
       {
         products?.length > 0 && products.slice(0,10).map((product) => {
@@ -53,6 +60,7 @@ console.log(cart)
           )
         })
       }
+    </div>
     </div>
   );
 }
