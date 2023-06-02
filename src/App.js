@@ -1,23 +1,58 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  const[products, setProducts] = useState([])
+  const[cart, setCart] = useState([])
+  useEffect(() => {
+    (
+      async() =>{
+        try{
+          const {data :{products} }= await axios.get('https://dummyjson.com/products')
+          // const updatedProducts = products.map((product) => ({...product, isInCart : false}))
+          setProducts(/*updatedProducts*/products);
+        }
+        catch(err){
+          console.log("something went wrong !!!")
+        }
+      }
+    )()
+  },[])
+
+  // const handleAddtoCartClick = (prodID, isInCart) =>{
+  //   if(!isInCart){
+  //     setProducts(products.map((product) => product.id === prodID ? ({...product, isInCart : true}) : product))
+  //     let updatedcart = products.filter((product) => product.id === prodID)
+  //     updatedcart = updatedcart.map((product) => ({...product, isInCart : true}))
+  //     setCart([...cart, ...updatedcart])
+  //   }
+  // }
+  const findIsInCart = (prodID) =>{
+    return cart.some((product) => product.id === prodID)
+  }
+
+  const handleAddtoCartClick = (prodId) =>{
+    const isInCart = findIsInCart(prodId)
+    if(!isInCart){
+      const filteredCart = products.filter((product) => product.id === prodId) 
+      setCart([...cart, ...filteredCart])
+    }
+  } 
+
+console.log(cart)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        products?.length > 0 && products.slice(0,10).map((product) => {
+          return(
+            <div key={product.id}>
+              {product.title}
+              <button onClick={() => handleAddtoCartClick(product.id /*,product.isInCart*/)}>Add to Cart</button>
+              </div>
+          )
+        })
+      }
     </div>
   );
 }
