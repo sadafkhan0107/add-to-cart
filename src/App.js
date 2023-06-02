@@ -51,7 +51,7 @@ console.log(cart)
     </div>
     <div className="App">
       {
-        products?.length > 0 && products.slice(0,10).map((product) => {
+        products?.length > 0 && products.slice(0,20).map((product) => {
           return(
             <div key={product.id}>
               {product.title}

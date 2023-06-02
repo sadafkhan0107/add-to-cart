@@ -20,7 +20,8 @@
   color: #61dafb;
 }
 .cart-btn{
-  margin-left: auto;
+   margin-left: auto;
+   /* align-items:; */
     position: relative;
     max-width: max-content;
     padding: 0.75rem;
